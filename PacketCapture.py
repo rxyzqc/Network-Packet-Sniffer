@@ -52,5 +52,12 @@ def process_packet(packet):
     print(f"{protocol} | {src_ip}:{src_port} | {hostname}:{dst_port} | {service}")
 
 
-# Use the sniff function to start capturing packets
-sniff(iface=interface, prn=process_packet)
+def sniffer():
+    try:
+        # Use the sniff function to start capturing packets
+        sniff(iface=interface, prn=process_packet)
+    except:
+        sniffer()
+
+
+sniffer()

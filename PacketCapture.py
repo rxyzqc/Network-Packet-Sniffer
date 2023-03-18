@@ -10,6 +10,7 @@ for interface, addrs in interfaces.items():
 # Ask the user to choose an interface
 interface = input("\nNetwork interface: ")
 
+print("\nProtocol / Source IP:Port / Destination Host:Port / Service\n")
 
 # Define a callback function to process each packet
 def process_packet(packet):
@@ -40,16 +41,16 @@ def process_packet(packet):
             elif protocol == "UDP":
                 service = socket.getservbyport(dst_port, "udp")
         except socket.error:
-            service = "Other"
+            service = "other"
 
     # Get the hostname of the destination IP
     try:
-        hostname = socket.gethostbyaddr(dst_ip)[0]
+        dst_host = socket.gethostbyaddr(dst_ip)[0]
     except socket.herror:
-        hostname = dst_ip
+        dst_host = dst_ip
 
     # Print the information
-    print(f"{protocol} | {src_ip}:{src_port} | {hostname}:{dst_port} | {service}")
+    print(f"{protocol} | {src_ip}:{src_port} | {dst_host}:{dst_port} | {service}")
 
 
 def sniffer():

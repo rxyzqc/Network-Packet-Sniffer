@@ -12,6 +12,7 @@ interface = input("\nNetwork interface: ")
 
 print("\nProtocol / Source IP:Port / Destination Host:Port / Service\n")
 
+
 # Define a callback function to process each packet
 def process_packet(packet):
     # Get the source and destination IP and port
@@ -31,9 +32,9 @@ def process_packet(packet):
 
     # Get the service name
     if dst_port == 80:
-        service = "HTTP"
+        service = "http"
     elif dst_port == 443:
-        service = "HTTPS"
+        service = "https"
     else:
         try:
             if protocol == "TCP":
@@ -50,7 +51,8 @@ def process_packet(packet):
         dst_host = dst_ip
 
     # Print the information
-    print(f"{protocol} | {src_ip}:{src_port} | {dst_host}:{dst_port} | {service}")
+    print(f"\033[93m{protocol}\033[0m | \033[34m{src_ip}:{src_port}\033[0m | \033[91m{dst_host}:{dst_port}\033[0m | "
+          f"\033[95m{service}\033[0m")
 
 
 def sniffer():
